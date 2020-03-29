@@ -70,42 +70,39 @@ class MusicLibraryController
          end
        end
 
-       def list_songs_by_artist
-         puts "Please enter the name of an artist:"
-         input = gets.chomp
+     def list_songs_by_artist
+       puts "Please enter the name of an artist:"
+       input = gets.chomp
          if artist = Artist.find_by_name(input)
            songs_sorted_by_name = artist.songs.sort_by do |song|
              song.name
-           end
-           #print the each item in the list
-           songs_sorted_by_name.each.with_index(1) do |song,index|
-             puts "#{index}. #{song.name} - #{song.genre.name}"
-           end
+         end
+         songs_sorted_by_name.each.with_index(1) do |song,index|
+           puts "#{index}. #{song.name} - #{song.genre.name}"
          end
        end
+     end
 
        def list_songs_by_genre
-         #prints all songs by a particular genre in a numbered list (alphabetized by song name)
          puts "Please enter the name of a genre:"
          input = gets.chomp
-         if genre = Genre.find_by_name(input) #find genre that matches input
-           #get the list of songs and collect a new list that is alphabetized by song name
+         if genre = Genre.find_by_name(input)
            songs_sorted_by_name = genre.songs.sort_by do |song|
              song.name
-           end
+         end
            #print the each item in he list
-           songs_sorted_by_name.each.with_index(1) do |song,index|
-             puts "#{index}. #{song.artist.name} - #{song.name}"
-           end
+         songs_sorted_by_name.each.with_index(1) do |song,index|
+           puts "#{index}. #{song.artist.name} - #{song.name}"
          end
        end
+      end
 
-       def song_array
-         sorted_library = self.library.sort_by {|song|song.name}
-         sorted_library.collect do |song|
-           "#{sorted_library.index(song) + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
-         end
+     def song_array
+       sorted_library = self.library.sort_by {|song|song.name}
+       sorted_library.collect do |song|
+         "#{sorted_library.index(song) + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
        end
+     end
 
   def play_song
     puts "Which song number would you like to play?"
@@ -120,9 +117,9 @@ class MusicLibraryController
   end
 
 
-      def name_extractor(filename)
-        #Returns an array, first value is artist, second is song, third is genre
-        file_bits = filename.gsub(/(\.mp3)/,'')
-        file_bits = file_bits.split(" - ")
-      end
+  def name_extractor(filename)
+    #Returns an array, first value is artist, second is song, third is genre
+    file_bits = filename.gsub(/(\.mp3)/,'')
+    file_bits = file_bits.split(" - ")
+  end
 end
