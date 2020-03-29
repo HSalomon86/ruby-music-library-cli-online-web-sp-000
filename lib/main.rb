@@ -44,6 +44,9 @@ class MusicLibraryController
       songs_sorted_by_song = Song.all.sort_by do |song| #returns an array of artists sorted by artist name
         song.name
      end
+     songs_sorted_by_song.each.with_index(1) do |song,index|
+       puts "#{index}. #{song.name}"
+     end
 
        def list_artists
          #prints all artists in the music library in a numbered list (alphabetized by artist name
