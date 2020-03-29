@@ -71,11 +71,9 @@ class MusicLibraryController
        end
 
        def list_songs_by_artist
-         #prints all songs by a particular artist in a numbered list (alphabetized by song name)
          puts "Please enter the name of an artist:"
          input = gets.chomp
-         if artist = Artist.find_by_name(input) #find artist that matches input
-           #get the list of songs and collect a new list that is alphabetized by song name
+         if artist = Artist.find_by_name(input)
            songs_sorted_by_name = artist.songs.sort_by do |song|
              song.name
            end
