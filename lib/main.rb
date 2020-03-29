@@ -43,7 +43,7 @@ class MusicLibraryController
        sorted_library = sorted_library.delete_if {|object|object==nil}
        sorted_library.uniq
      end
-     
+
      def list_songs
        sorted_library = self.library.sort_by {|song|song.name}
        sorted_library.each do |song|
@@ -114,6 +114,8 @@ class MusicLibraryController
          if (1..Song.all.length).include?(input)
            song = list_of_songs[input+2]
            puts "Playing #{song.name} by #{song.artist.name}"
+         else
+           nil
          end
        end
 
