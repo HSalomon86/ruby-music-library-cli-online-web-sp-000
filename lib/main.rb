@@ -5,4 +5,8 @@ class MusicLibraryController
     @path.import
   end
 
+  def call
+    
+  end
+
 end
